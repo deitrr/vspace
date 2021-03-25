@@ -16,8 +16,7 @@ The next line is
 
     destfolder <path-to-output>
 
-which is the name of a subdirectory that will contain all the initial conditions for the parameter sweep. **NOTE**: ``VSPACE``
-will overwrite previously generated files!
+which is the name of a subdirectory that will contain all the initial conditions for the parameter sweep.
 
 The next line is
 
