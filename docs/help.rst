@@ -97,7 +97,7 @@ In all modes the "start" and "end" values represent the limits of the parameter
 to be surveyed and are inclusive of the end points.
 
 **Explicit Submode**
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 In this grid submode, the "spacing" value is just a number that represents the
 interval in between trials.``VSPACE`` will create as many trials as necessary
 to follow the sampling rules, and will not necessarily include a trial at the

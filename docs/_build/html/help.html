@@ -83,16 +83,16 @@
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">The Input File</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#sampling-rules">Sampling Rules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#grid-mode"><strong>Grid Mode:</strong></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#explicit-submode"><strong>Explicit Submode</strong>:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#linear-submode"><strong>Linear Submode</strong>:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#logarithmic-submode"><strong>Logarithmic Submode</strong>:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#grid-mode"><strong>Grid Mode</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#explicit-submode"><strong>Explicit Submode</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linear-submode"><strong>Linear Submode</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logarithmic-submode"><strong>Logarithmic Submode</strong></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#random-mode"><strong>Random Mode:</strong></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#uniform-submode"><strong>Uniform Submode</strong>:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gaussian-submode"><strong>Gaussian Submode</strong>:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sine-and-cosine-submodes"><strong>Sine and Cosine Submodes</strong>:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#random-mode"><strong>Random Mode</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#uniform-submode"><strong>Uniform Submode</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gaussian-submode"><strong>Gaussian Submode</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sine-and-cosine-submodes"><strong>Sine and Cosine Submodes</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -159,8 +159,7 @@ is slightly different when used with <code class="docutils literal notranslate">
 <blockquote>
 <div><p>destfolder &lt;path-to-output&gt;</p>
 </div></blockquote>
-<p>which is the name of a subdirectory that will contain all the initial conditions for the parameter sweep. <strong>NOTE</strong>: <code class="docutils literal notranslate"><span class="pre">VSPACE</span></code>
-will overwrite previously generated files!</p>
+<p>which is the name of a subdirectory that will contain all the initial conditions for the parameter sweep.</p>
 <p>The next line is</p>
 <blockquote>
 <div><p>trialname  &lt;prefix&gt;</p>
@@ -217,7 +216,7 @@ using the <a class="reference external" href="../multi-planet">multi-planet</a> 
 </div></blockquote>
 <p>will allow you to generate trials that are randomly distributed.</p>
 <div class="section" id="grid-mode">
-<h2><strong>Grid Mode:</strong><a class="headerlink" href="#grid-mode" title="Permalink to this headline">¶</a></h2>
+<h2><strong>Grid Mode</strong><a class="headerlink" href="#grid-mode" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">VSPACE</span></code> allows for 3 submodes to generate trials that explore a gridded parameter
 space, i.e even spacing. These submodes are <strong>explicit</strong>, <strong>linear</strong>, and
 <strong>logarithmic</strong>. Each adheres the following syntax:</p>
@@ -227,7 +226,7 @@ space, i.e even spacing. These submodes are <strong>explicit</strong>, <strong>l
 <p>In all modes the “start” and “end” values represent the limits of the parameter
 to be surveyed and are inclusive of the end points.</p>
 <div class="section" id="explicit-submode">
-<h3><strong>Explicit Submode</strong>:<a class="headerlink" href="#explicit-submode" title="Permalink to this headline">¶</a></h3>
+<h3><strong>Explicit Submode</strong><a class="headerlink" href="#explicit-submode" title="Permalink to this headline">¶</a></h3>
 <p>In this grid submode, the “spacing” value is just a number that represents the
 interval in between trials.``VSPACE`` will create as many trials as necessary
 to follow the sampling rules, and will not necessarily include a trial at the
@@ -238,7 +237,7 @@ with a spacing of 0.1, the syntax is:</p>
 </div></blockquote>
 </div>
 <div class="section" id="linear-submode">
-<h3><strong>Linear Submode</strong>:<a class="headerlink" href="#linear-submode" title="Permalink to this headline">¶</a></h3>
+<h3><strong>Linear Submode</strong><a class="headerlink" href="#linear-submode" title="Permalink to this headline">¶</a></h3>
 <p>To sample the grid linearly with a specific number of trials
 that are evenly spaced, change the spacing to be an “n” followed
 by an integer that represents the number of values to generate. For example, the
@@ -264,7 +263,7 @@ If you use negative values for a parameter that has alternate units for a
 negative option, the outcome will most likely be wrong!</p>
 </div>
 <div class="section" id="logarithmic-submode">
-<h3><strong>Logarithmic Submode</strong>:<a class="headerlink" href="#logarithmic-submode" title="Permalink to this headline">¶</a></h3>
+<h3><strong>Logarithmic Submode</strong><a class="headerlink" href="#logarithmic-submode" title="Permalink to this headline">¶</a></h3>
 <p>To change the spacing to be logarithmic, use “l” instead of “n”:</p>
 <blockquote>
 <div><p>dSemi  [1, 1000, l10]  a</p>
@@ -278,7 +277,7 @@ the desired values (check the histograms).</p>
 </div>
 </div>
 <div class="section" id="random-mode">
-<h2><strong>Random Mode:</strong><a class="headerlink" href="#random-mode" title="Permalink to this headline">¶</a></h2>
+<h2><strong>Random Mode</strong><a class="headerlink" href="#random-mode" title="Permalink to this headline">¶</a></h2>
 <p>The random mode contains four submodes: <strong>uniform</strong>, <strong>Gaussian</strong>, <strong>sine</strong> and
 <strong>cosine</strong>. The syntax for generating randomly sampled data is similar to grid
 mode, with a few noteable differences. In random mode, one MUST set the variable
@@ -293,7 +292,7 @@ variable <code class="docutils literal notranslate"><span class="pre">seed</span
 <div><p>seed &lt;some integer&gt;</p>
 </div></blockquote>
 <div class="section" id="uniform-submode">
-<h3><strong>Uniform Submode</strong>:<a class="headerlink" href="#uniform-submode" title="Permalink to this headline">¶</a></h3>
+<h3><strong>Uniform Submode</strong><a class="headerlink" href="#uniform-submode" title="Permalink to this headline">¶</a></h3>
 <p>A uniform distribution is sampled like so:</p>
 <blockquote>
 <div><p>&lt;option&gt; [&lt;min&gt;, &lt;max&gt;, u] &lt;prefix&gt;</p>
@@ -301,7 +300,7 @@ variable <code class="docutils literal notranslate"><span class="pre">seed</span
 <p>where &lt;min&gt; and &lt;max&gt; are the limits.</p>
 </div>
 <div class="section" id="gaussian-submode">
-<h3><strong>Gaussian Submode</strong>:<a class="headerlink" href="#gaussian-submode" title="Permalink to this headline">¶</a></h3>
+<h3><strong>Gaussian Submode</strong><a class="headerlink" href="#gaussian-submode" title="Permalink to this headline">¶</a></h3>
 <p>For Gaussian/normal distributions, the syntax is:</p>
 <blockquote>
 <div><p>&lt;option&gt; [&lt;mean&gt;, &lt;width/stdev&gt;, g] &lt;prefix&gt;</p>
@@ -320,7 +319,7 @@ for example, dEcc should not be &lt; 0 or &gt; 1. You can provide cutoffs with 4
 not matter.</p>
 </div>
 <div class="section" id="sine-and-cosine-submodes">
-<h3><strong>Sine and Cosine Submodes</strong>:<a class="headerlink" href="#sine-and-cosine-submodes" title="Permalink to this headline">¶</a></h3>
+<h3><strong>Sine and Cosine Submodes</strong><a class="headerlink" href="#sine-and-cosine-submodes" title="Permalink to this headline">¶</a></h3>
 <p>For angles, you may want to sample the sine or cosine of the angle uniformly,
 rather than sampling the angle itself uniformly. You can accomplish this
 with <code class="docutils literal notranslate"><span class="pre">s</span></code> or <code class="docutils literal notranslate"><span class="pre">c</span></code>, for sine and cosine respectively:</p>
