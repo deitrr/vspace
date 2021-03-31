@@ -19,7 +19,7 @@ import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
-project = 'Vspace'
+project = 'vspace'
 copyright = '2021, Caitlyn Wilhelm'
 author = 'Caitlyn Wilhelm'
 
