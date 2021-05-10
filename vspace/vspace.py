@@ -1,7 +1,6 @@
 from __future__ import print_function
 import os
 import sys
-import subprocess as sb
 import numpy as np
 import re
 import vspace_hyak

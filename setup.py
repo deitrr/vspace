@@ -1,42 +1,74 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# setup script stolen shamelessly from Rod Luger
 
-from __future__ import print_function
+from __future__ import (absolute_import, division, print_function,
+                            unicode_literals)
+import warnings
 import os
+import io
+import re
 
-print("\x1b[01m%s\x1b[39;49;00m" % "Setting up VSPACE...")
+try:
+  from setuptools import setup
+  from setuptools.command.install import install
+  setup
+except ImportError:
+  from distutils.core import setup
+  setup
 
-# Get home directory
-home = os.path.expanduser('~')
+# Get the long description from the README
+def readme():
+  with open('README.md') as f:
+    return f.read()
 
-# Command we're adding to the user profile
-path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'bin')
-pythonpath = os.path.join(os.path.dirname(os.path.realpath(__file__)))
-cmd = '\n\n# Added by VSPACE 0.1.1 setup script\nexport PATH=%s:$PATH\nexport PYTHONPATH=${PYTHONPATH}:%s' % (path, pythonpath)
+# Read, version funcs taken from:
+# https://github.com/ellisonbg/altair/blob/master/setup.py
+def read(path, encoding='utf-8'):
+    path = os.path.join(os.path.dirname(__file__), path)
+    with io.open(path, encoding=encoding) as fp:
+        return fp.read()
 
-# Setup success?
-success = False
+def version(path):
+    """
+    Obtain the packge version from a python file e.g. pkg/__init__.py
+    See <https://packaging.python.org/en/latest/single_source_version.html>.
+    """
+    version_file = read(path)
+    version_match = re.search(r"""^__version__ = ['"]([^'"]*)['"]""",
+                              version_file, re.M)
+    if version_match:
+        return version_match.group(1)
+    raise RuntimeError("Unable to find version string.")
 
-for file in [foo for foo in ['.bash_profile', '.profile', '.bashrc'] if foo in os.listdir(home)]:
-  
-  with open(os.path.join(home, file), 'r') as f:
-    contents = f.read()
-  
-  # Check if the path is already there  
-  if cmd in contents:
-    success = True
-    break
-  
-  # We're going to add it
-  else:
-    with open(os.path.join(home, file), 'a') as f:
-      print(cmd, file = f)
-    success = True
-        
-if success == False:
-  print("Error adding \x1b[01mvspace\x1b[39;49;00m to your PATH.")
-  print("You will have to add `%s` manually." % path)
-else:
-  print("Success. Navigate to the VSPACE directory and read the README.")
-  print("You may need to restart your terminal.")
+
+VERSION = version('vspace/__init__.py')
+
+# Setup!
+setup(name = 'vspace',
+      version = VERSION,
+      description = 'VPLANET parameter sweep helper',
+      long_description = readme(),
+      classifiers = [
+                      'Development Status :: 3 - Alpha',
+                      'License :: OSI Approved :: MIT License',
+                      'Programming Language :: Python',
+                      'Programming Language :: Python :: 2',
+                      'Topic :: Scientific/Engineering :: Astronomy',
+                    ],
+      url = 'https://github.com/VirtualPlanetaryLaboratory/vspace',
+      author = 'Caitlyn Wilhelm',
+      author_email = 'cwilhelm@uw.edu',
+      license = 'MIT',
+      packages = ['vspace'],
+      entry_points = {
+          'console_scripts': [
+               'vspace = vspace.vspace',
+          ],
+      },
+      install_requires = [
+                          'numpy',
+                          'matplotlib',
+                          'argparse',
+                          ],
+      include_package_data = True,
+      zip_safe = False)
