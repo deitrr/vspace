@@ -66,7 +66,7 @@ setup(
     author_email="cwilhelm@uw.edu",
     license="MIT",
     packages=["vspace"],
-    entry_points={"console_scripts": ["vspace = vspace.vspace",],},
+    entry_points={"console_scripts": ["vspace=vspace.vspace:main",],},
     install_requires=["numpy", "matplotlib", "argparse",],
     include_package_data=True,
     zip_safe=False,
