@@ -1,17 +1,18 @@
-from vplot import GetOutput
-import subprocess as sub
+import subprocess
 import numpy as np
 import os
-cwd = os.path.dirname(os.path.realpath(__file__))
+import pathlib
+import sys
 
 def test_vspace_linear():
-    dir = cwd+'/Linear_Test'
-    # removes the files created when vspace is ran
-    sub.run(['rm', '-rf', dir],cwd=cwd)
-    # runs vspace
-    sub.run(['python','../../vspace/vspace/vspace.py','vspace.in'],cwd=cwd)
+    #gets current path
+    path = pathlib.Path(__file__).parents[0].absolute()
+    sys.path.insert(1, str(path.parents[0]))
+    # Run vspace
+    if not (path / "Linear_Test").exists():
+        subprocess.check_output(["vspace", "vspace.in"], cwd=path)
     # Grab the output
-    folders = sorted([f.path for f in os.scandir(dir) if f.is_dir()])
+    folders = sorted([f.path for f in os.scandir(path / "Linear_Test") if f.is_dir()])
     semi = []
     for i in range(len(folders)):
         os.chdir(folders[i])

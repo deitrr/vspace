@@ -1,18 +1,20 @@
-from vplot import GetOutput
-import subprocess as sub
+import subprocess
 import numpy as np
 import os
-cwd = os.path.dirname(os.path.realpath(__file__))
+import pathlib
+import sys
 
 
 def test_vspace_log():
-    dir = cwd+'/Log_Test'
-    # Removes the files created when vspace is ran
-    sub.run(['rm', '-rf', dir],cwd=cwd)
-    # Runs vspace
-    sub.run(['python','../../vspace/vspace/vspace.py','vspace.in'],cwd=cwd)
+    #gets current path
+    path = pathlib.Path(__file__).parents[0].absolute()
+    sys.path.insert(1, str(path.parents[0]))
+
+    # Run vspace
+    if not (path / "Log_Test").exists():
+        subprocess.check_output(["vspace", "vspace.in"], cwd=path)
     # Grab the output
-    folders = sorted([f.path for f in os.scandir(dir) if f.is_dir()])
+    folders = sorted([f.path for f in os.scandir(path / "Log_Test") if f.is_dir()])
     semi = []
     for i in range(len(folders)):
         os.chdir(folders[i])

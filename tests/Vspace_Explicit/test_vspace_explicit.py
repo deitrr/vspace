@@ -1,18 +1,19 @@
-from vplot import GetOutput
-import subprocess as sub
+import subprocess
 import numpy as np
 import os
-cwd = os.path.dirname(os.path.realpath(__file__))
+import pathlib
+import sys
 
 
 def test_vspace_explicit():
-    dir = cwd+'/Explict_Test'
-    # removes the files created when vspace is ran
-    sub.run(['rm', '-rf', dir],cwd=cwd)
-    # runs vspace
-    sub.run(['python','../../vspace/vspace/vspace.py','vspace.in'],cwd=cwd)
+    #gets current path
+    path = pathlib.Path(__file__).parents[0].absolute()
+    sys.path.insert(1, str(path.parents[0]))
+    # Run vspace
+    if not (path / "Explict_Test").exists():
+        subprocess.check_output(["vspace", "vspace.in"], cwd=path)
     # Grab the output
-    folders = sorted([f.path for f in os.scandir(dir) if f.is_dir()])
+    folders = sorted([f.path for f in os.scandir(path / "Explict_Test") if f.is_dir()])
     semi = []
     for i in range(len(folders)):
         os.chdir(folders[i])
@@ -22,6 +23,7 @@ def test_vspace_explicit():
                     newline = newline.strip().split()
                     semi.append(newline[1])
         os.chdir('../')
+
     for i in range(len(semi)):
         semi[i] = float(semi[i])
     assert np.isclose(semi[0], 1.0)
