@@ -5,10 +5,11 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>The Input File &mdash; Vspace 1.0 documentation</title>
+  <title>The Input File &mdash; vspace 1.0 documentation</title>
   
 
   
@@ -28,12 +29,16 @@
   
 
   
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
 
   
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Vspace 1.0 documentation" href="index.html"/>
+    <link rel="top" title="vspace 1.0 documentation" href="index.html"/>
         <link rel="prev" title="Installation" href="install.html"/> 
 
   
@@ -52,7 +57,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Vspace
+            <a href="index.html" class="icon icon-home"> vspace
           
 
           
@@ -83,16 +88,16 @@
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">The Input File</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#sampling-rules">Sampling Rules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#grid-mode"><strong>Grid Mode</strong></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#explicit-submode"><strong>Explicit Submode</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#linear-submode"><strong>Linear Submode</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#logarithmic-submode"><strong>Logarithmic Submode</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#grid-mode">Grid Mode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#explicit-submode">Explicit Submode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linear-submode">Linear Submode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logarithmic-submode">Logarithmic Submode</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#random-mode"><strong>Random Mode</strong></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#uniform-submode"><strong>Uniform Submode</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gaussian-submode"><strong>Gaussian Submode</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sine-and-cosine-submodes"><strong>Sine and Cosine Submodes</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#random-mode">Random Mode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#uniform-submode">Uniform Submode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gaussian-submode">Gaussian Submode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sine-and-cosine-submodes">Sine and Cosine Submodes</a></li>
 </ul>
 </li>
 </ul>
@@ -112,7 +117,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">Vspace</a>
+        <a href="index.html">vspace</a>
       </nav>
 
 
@@ -143,7 +148,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="the-input-file">
+  <section id="the-input-file">
 <h1>The Input File<a class="headerlink" href="#the-input-file" title="Permalink to this headline">¶</a></h1>
 <p>The input file contains a list of template files and all the <code class="docutils literal notranslate"><span class="pre">VPLanet</span></code> options to vary.
 An example input file, called <code class="docutils literal notranslate"><span class="pre">vspace.in</span></code>, is included in this directory and its
@@ -206,8 +211,8 @@ using the <a class="reference external" href="../multi-planet">multi-planet</a> 
 <div><p>rm &lt;option name&gt;</p>
 </div></blockquote>
 <p>For the time being, this merely comments out the matching line.</p>
-</div>
-<div class="section" id="sampling-rules">
+</section>
+<section id="sampling-rules">
 <h1>Sampling Rules<a class="headerlink" href="#sampling-rules" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">VSPACE</span></code> has two sampling modes: <strong>grid</strong> and <strong>random</strong>, which are specified with the word
 “samplemode”. For example:</p>
@@ -215,8 +220,8 @@ using the <a class="reference external" href="../multi-planet">multi-planet</a> 
 <div><p>samplemode random</p>
 </div></blockquote>
 <p>will allow you to generate trials that are randomly distributed.</p>
-<div class="section" id="grid-mode">
-<h2><strong>Grid Mode</strong><a class="headerlink" href="#grid-mode" title="Permalink to this headline">¶</a></h2>
+<section id="grid-mode">
+<h2>Grid Mode<a class="headerlink" href="#grid-mode" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">VSPACE</span></code> allows for 3 submodes to generate trials that explore a gridded parameter
 space, i.e even spacing. These submodes are <strong>explicit</strong>, <strong>linear</strong>, and
 <strong>logarithmic</strong>. Each adheres the following syntax:</p>
@@ -225,8 +230,8 @@ space, i.e even spacing. These submodes are <strong>explicit</strong>, <strong>l
 </div></blockquote>
 <p>In all modes the “start” and “end” values represent the limits of the parameter
 to be surveyed and are inclusive of the end points.</p>
-<div class="section" id="explicit-submode">
-<h3><strong>Explicit Submode</strong><a class="headerlink" href="#explicit-submode" title="Permalink to this headline">¶</a></h3>
+<section id="explicit-submode">
+<h3>Explicit Submode<a class="headerlink" href="#explicit-submode" title="Permalink to this headline">¶</a></h3>
 <p>In this grid submode, the “spacing” value is just a number that represents the
 interval in between trials.``VSPACE`` will create as many trials as necessary
 to follow the sampling rules, and will not necessarily include a trial at the
@@ -235,9 +240,9 @@ with a spacing of 0.1, the syntax is:</p>
 <blockquote>
 <div><p>dSemi  [1, 2, 0.1]  a</p>
 </div></blockquote>
-</div>
-<div class="section" id="linear-submode">
-<h3><strong>Linear Submode</strong><a class="headerlink" href="#linear-submode" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="linear-submode">
+<h3>Linear Submode<a class="headerlink" href="#linear-submode" title="Permalink to this headline">¶</a></h3>
 <p>To sample the grid linearly with a specific number of trials
 that are evenly spaced, change the spacing to be an “n” followed
 by an integer that represents the number of values to generate. For example, the
@@ -261,9 +266,9 @@ swap the start and end values. For example:</p>
 <code class="docutils literal notranslate"><span class="pre">VPLanet</span></code> to change the units, so make sure you check <code class="docutils literal notranslate"><span class="pre">vplanet</span> <span class="pre">-h</span></code>.
 If you use negative values for a parameter that has alternate units for a
 negative option, the outcome will most likely be wrong!</p>
-</div>
-<div class="section" id="logarithmic-submode">
-<h3><strong>Logarithmic Submode</strong><a class="headerlink" href="#logarithmic-submode" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="logarithmic-submode">
+<h3>Logarithmic Submode<a class="headerlink" href="#logarithmic-submode" title="Permalink to this headline">¶</a></h3>
 <p>To change the spacing to be logarithmic, use “l” instead of “n”:</p>
 <blockquote>
 <div><p>dSemi  [1, 1000, l10]  a</p>
@@ -274,10 +279,10 @@ can be very useful, <strong>you have the power to generate a large number of fil
 quickly</strong>. Use this feature wisely: test with small numbers first to ensure that files appear
 in the correct locations and that initial conditions are indeed output with
 the desired values (check the histograms).</p>
-</div>
-</div>
-<div class="section" id="random-mode">
-<h2><strong>Random Mode</strong><a class="headerlink" href="#random-mode" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="random-mode">
+<h2>Random Mode<a class="headerlink" href="#random-mode" title="Permalink to this headline">¶</a></h2>
 <p>The random mode contains four submodes: <strong>uniform</strong>, <strong>Gaussian</strong>, <strong>sine</strong> and
 <strong>cosine</strong>. The syntax for generating randomly sampled data is similar to grid
 mode, with a few noteable differences. In random mode, one MUST set the variable
@@ -291,16 +296,16 @@ variable <code class="docutils literal notranslate"><span class="pre">seed</span
 <blockquote>
 <div><p>seed &lt;some integer&gt;</p>
 </div></blockquote>
-<div class="section" id="uniform-submode">
-<h3><strong>Uniform Submode</strong><a class="headerlink" href="#uniform-submode" title="Permalink to this headline">¶</a></h3>
+<section id="uniform-submode">
+<h3>Uniform Submode<a class="headerlink" href="#uniform-submode" title="Permalink to this headline">¶</a></h3>
 <p>A uniform distribution is sampled like so:</p>
 <blockquote>
 <div><p>&lt;option&gt; [&lt;min&gt;, &lt;max&gt;, u] &lt;prefix&gt;</p>
 </div></blockquote>
 <p>where &lt;min&gt; and &lt;max&gt; are the limits.</p>
-</div>
-<div class="section" id="gaussian-submode">
-<h3><strong>Gaussian Submode</strong><a class="headerlink" href="#gaussian-submode" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="gaussian-submode">
+<h3>Gaussian Submode<a class="headerlink" href="#gaussian-submode" title="Permalink to this headline">¶</a></h3>
 <p>For Gaussian/normal distributions, the syntax is:</p>
 <blockquote>
 <div><p>&lt;option&gt; [&lt;mean&gt;, &lt;width/stdev&gt;, g] &lt;prefix&gt;</p>
@@ -317,9 +322,9 @@ for example, dEcc should not be &lt; 0 or &gt; 1. You can provide cutoffs with 4
 </div></blockquote>
 <p>You do not need to provide both min and max if you need only one, and the order does
 not matter.</p>
-</div>
-<div class="section" id="sine-and-cosine-submodes">
-<h3><strong>Sine and Cosine Submodes</strong><a class="headerlink" href="#sine-and-cosine-submodes" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="sine-and-cosine-submodes">
+<h3>Sine and Cosine Submodes<a class="headerlink" href="#sine-and-cosine-submodes" title="Permalink to this headline">¶</a></h3>
 <p>For angles, you may want to sample the sine or cosine of the angle uniformly,
 rather than sampling the angle itself uniformly. You can accomplish this
 with <code class="docutils literal notranslate"><span class="pre">s</span></code> or <code class="docutils literal notranslate"><span class="pre">c</span></code>, for sine and cosine respectively:</p>
@@ -331,14 +336,14 @@ with <code class="docutils literal notranslate"><span class="pre">s</span></code
 not the sine or cosine of the angle. <strong>NOTE</strong>: The units of the angle can be either radians or degrees, but
 must be consistent with your primary input file, usually <code class="docutils literal notranslate"><span class="pre">vpl.in</span></code> – <code class="docutils literal notranslate"><span class="pre">VSPACE</span></code> determines the unit from
 this file.</p>
-</div>
-</div>
-</div>
-<div class="section" id="template-files">
+</section>
+</section>
+</section>
+<section id="template-files">
 <h1>Template Files<a class="headerlink" href="#template-files" title="Permalink to this headline">¶</a></h1>
 <p>The template files are nearly identical to standard <code class="docutils literal notranslate"><span class="pre">VPLanet</span></code> input files except
 that they should not include the parameters to be varied.</p>
-</div>
+</section>
 
 
            </div>
@@ -384,6 +389,7 @@ that they should not include the parameters to be varied.</p>
             HAS_SOURCE:  true
         };
     </script>
+      <script type="text/javascript" src="_static/documentation_options.js"></script>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
