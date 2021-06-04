@@ -26,4 +26,4 @@ limits and with either linear or logarithmic spacings. In **Random Mode** the
 distributions are random, but can be **uniform, Gaussian** or uniform in **sine**
 or **cosine**. Non-uniform distributions can be easily truncated, if necessary.
 Histograms of the initial conditions will also be built. After generating the
-trials, use the `multi-planet <../multi-planet>`_ script to run.
+trials, use the [multi-planet package](https://github.com/VirtualPlanetaryLaboratory/multi-planet) to run.
