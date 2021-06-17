@@ -209,3 +209,6 @@ Template Files
 ==============
 The template files are nearly identical to standard ``VPLanet`` input files except
 that they should not include the parameters to be varied.
+[Note: I don't think this is true. I wrote the vspace code to cross reference
+all options between in src/*.in files and the vspace input file. Is there an error
+that occurs when your vplanet files contain the parameters to be varied? -RD]
