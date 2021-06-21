@@ -151,6 +151,7 @@ def main():
 
     #- second pass through input file ------------------------------------------
     #- identify and check syntax of lines demarking iterations -----------------
+    #- build arrays of variables if all input is valid -------------------------
     for i in range(len(lines)):
         if lines[i].split() == []:
             pass  # nothing on this line
@@ -229,56 +230,71 @@ def main():
 
             # user set linear spacing of data
             if values[2][0] == "n":
-                values[2] = values[2][1:]  #remove leading 'n'
-                if np.float(values[2]).is_integer():
-                    #if number for linear spacing is an integer, we are good
-                    #construct this parameter's grid
-                    array = np.linspace(
-                        np.float(values[0]), np.float(values[1]), int(values[2])
-                    )
+                if mode == 0:
+                    values[2] = values[2][1:]  #remove leading 'n'
+                    if np.float(values[2]).is_integer():
+                        #if number for linear spacing is an integer, we are good
+                        #construct this parameter's grid
+                        array = np.linspace(
+                            np.float(values[0]), np.float(values[1]), int(values[2])
+                        )
+                    else:
+                        #number for linear spacing was not an integer. exit.
+                        raise IOError(
+                            "Attempt to iterate over '%s' for '%s', but number of points provided not an integer value"
+                            % (name, flist[fnum - 1])
+                        )
                 else:
-                    #number for linear spacing was not an integer. exit.
+                    #tried to set linear spacing in random mode, exit
                     raise IOError(
-                        "Attempt to iterate over '%s' for '%s', but number of points provided not an integer value"
+                        "Attempt to iterate over grid in random mode for '%s' for '%s'"
                         % (name, flist[fnum - 1])
                     )
 
+
             # user set log spacing of data
             elif values[2][0] == "l":
-                values[2] = values[2][1:]  #remove leading 'l'
-                if np.float(values[0]) < 0:
-                    #user has set a negative value for endpoints
-                    #signs on left and right ends must agree! (might want to change for some parameters)
-                    if np.float(values[2]).is_integer():
-                        #check if log spacing has a integer number, we are ok
-                        #construct this parameter's grid
-                        array = -np.logspace(
-                            np.log10(-np.float(values[0])),
-                            np.log10(-np.float(values[1])),
-                            int(values[2]),
-                        )
+                if mode == 0:
+                    values[2] = values[2][1:]  #remove leading 'l'
+                    if np.float(values[0]) < 0:
+                        #user has set a negative value for endpoints
+                        #signs on left and right ends must agree! (might want to change for some parameters)
+                        if np.float(values[2]).is_integer():
+                            #check if log spacing has a integer number, we are ok
+                            #construct this parameter's grid
+                            array = -np.logspace(
+                                np.log10(-np.float(values[0])),
+                                np.log10(-np.float(values[1])),
+                                int(values[2]),
+                            )
+                        else:
+                            #not an integer number of grid points, exit
+                            raise IOError(
+                                "Attempt to iterate over '%s' for '%s', but number of points provided not an integer value"
+                                % (name, flist[fnum - 1])
+                            )
                     else:
-                        #not an integer number of grid points, exit
-                        raise IOError(
-                            "Attempt to iterate over '%s' for '%s', but number of points provided not an integer value"
-                            % (name, flist[fnum - 1])
-                        )
+                        #left edge is not negative
+                        if np.float(values[2]).is_integer():
+                            #check if log spacing has a integer number, we are ok
+                            #construct this parameter's grid
+                            array = np.logspace(
+                                np.log10(np.float(values[0])),
+                                np.log10(np.float(values[1])),
+                                int(values[2]),
+                            )
+                        else:
+                            #not an integer number of grid points, exit
+                            raise IOError(
+                                "Attempt to iterate over '%s' for '%s', but number of points provided not an integer value"
+                                % (name, flist[fnum - 1])
+                            )
                 else:
-                    #left edge is not negative
-                    if np.float(values[2]).is_integer():
-                        #check if log spacing has a integer number, we are ok
-                        #construct this parameter's grid
-                        array = np.logspace(
-                            np.log10(np.float(values[0])),
-                            np.log10(np.float(values[1])),
-                            int(values[2]),
-                        )
-                    else:
-                        #not an integer number of grid points, exit
-                        raise IOError(
-                            "Attempt to iterate over '%s' for '%s', but number of points provided not an integer value"
-                            % (name, flist[fnum - 1])
-                        )
+                    #tried to set log spacing in random mode, exit
+                    raise IOError(
+                        "Attempt to iterate over grid in random mode for '%s' for '%s'"
+                        % (name, flist[fnum - 1])
+                    )
 
             # user wants to randomly sample a normal/gaussian distribution
             elif values[2][0] == "g":
@@ -324,15 +340,15 @@ def main():
                                 )
                         del max_cutoff  #clean up so next parameter doesn't have spurious cutoffs
                         del min_cutoff
-                    elif "min_cutoff" not in vars() and "max_cutoff" not in vars():
-                        #i can't remember why i resample everything here
-                        #wtf??? maybe this can be removed??
-                        for ll in np.arange(len(array)):
-                            array[ll] = np.random.normal(
-                                loc=np.float(values[0]),
-                                scale=np.float(values[1]),
-                                size=1,
-                            )
+                    # elif "min_cutoff" not in vars() and "max_cutoff" not in vars():
+                    #     #i can't remember why i resample everything here!
+                    #     #wtf??? maybe this can be removed??
+                    #     for ll in np.arange(len(array)):
+                    #         array[ll] = np.random.normal(
+                    #             loc=np.float(values[0]),
+                    #             scale=np.float(values[1]),
+                    #             size=1,
+                    #         )
                 else:
                     #tried to set gaussian sampling in grid mode, exit
                     raise IOError(
@@ -441,25 +457,36 @@ def main():
                         % (name, flist[fnum - 1])
                     )
 
+            # create custom (posterior) distribution here
+            #elif values[2][c] == "p":
+            #find file or object with body name (from .in file) and parameter name (name)
+
             # user set the spacing size of data
             else:
-                if (
-                    np.float(values[0]) > np.float(values[1])
-                    and np.float(values[2]) > 0
-                ):
-                    #check if left is bigger than right end and interval is positive
-                    #if so, exit
-                    raise IOError(
-                        "Attempt to iterate over '%s' for '%s', but start value > end value and spacing is positive"
-                        % (name, flist[fnum - 1])
-                    )
+                if mode == 0:
+                    if (
+                        np.float(values[0]) > np.float(values[1])
+                        and np.float(values[2]) > 0
+                    ):
+                        #check if left is bigger than right end and interval is positive
+                        #if so, exit
+                        raise IOError(
+                            "Attempt to iterate over '%s' for '%s', but start value > end value and spacing is positive"
+                            % (name, flist[fnum - 1])
+                        )
+                    else:
+                        #left is smaller than right or interval is negative
+                        #all ok, create grid for this parameter
+                        array = np.arange(
+                            np.float(values[0]),
+                            np.float(values[1]) + np.float(values[2]),
+                            np.float(values[2]),
+                        )
                 else:
-                    #left is smaller than right or interval is negative
-                    #all ok, create grid for this parameter
-                    array = np.arange(
-                        np.float(values[0]),
-                        np.float(values[1]) + np.float(values[2]),
-                        np.float(values[2]),
+                    #tried to set log spacing in random mode, exit
+                    raise IOError(
+                        "Attempt to iterate over grid in random mode for '%s' for '%s'"
+                        % (name, flist[fnum - 1])
                     )
 
             #this parameter was varied, add to iterables
@@ -725,7 +752,10 @@ def main():
                 current_line = "rand_" + np.str(count).zfill(n) + " "  #line in rand_list file
                 for ii in np.arange(len(iterables0)):
                     #loop over trials, add values of each variable
-                    tup.append(iterables0[ii][count])
+                    try:
+                        tup.append(iterables0[ii][count])
+                    except:
+                        import pdb; pdb.set_trace()
                     if count == 0:
                         #add body name and option to rand_list file header
                         header += flist[iter_file[ii]][:-3] + "/" + iter_name[ii] + " "
@@ -808,6 +838,7 @@ def main():
 
                     for k in range(len(spref)):
                         # check if any were not already present in the copied file, then write them
+                        # import pdb; pdb.set_trace()
                         if sflag[k] < 0:
                             if slines[k].split()[0] == "rm":
                                 raise IOError(
@@ -815,7 +846,18 @@ def main():
                                     % (slines[k].split()[1], flist[i])
                                 )
                             else:
-                                fOut.write("\n" + slines[k])
+                                if slines[k].split()[0] in iter_name:
+                                    #parameter is being varied
+                                    m = np.where(iter_name == slines[k].split()[0])[0][0]
+                                    if iter_file[m] == i:
+                                        #check we're in the right file
+                                        fOut.write("\n"+slines[k].split()[0]+" "+str(tup[m])+"\n");
+                                    else:
+                                        #not iterating over variable in this file
+                                        fOut.write("\n" + slines[k])
+                                else:
+                                    #not iterating over this variable
+                                    fOut.write("\n" + slines[k])
 
                 fOut.close()  #close new .in file
 
