@@ -1,6 +1,6 @@
 from __future__ import print_function
-#from . import vspace_hyak  #relative import does not seem to work here. can't figure out why
-import vspace_hyak
+from . import vspace_hyak  #relative import does not seem to work here. can't figure out why
+# import vspace_hyak
 import os
 import sys
 import numpy as np
