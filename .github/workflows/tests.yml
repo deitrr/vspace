@@ -40,7 +40,7 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           GIT_TRACE_CURL: true
         run: |
-          python -m pip install git+https://$ACCESS_TOKEN@github.com/VirtualPlanetaryLaboratory/vplanet-private.git@main#egg=vplanet
+          python -m pip install git+https://$ACCESS_TOKEN@github.com/VirtualPlanetaryLaboratory/vplanet-private.git@main#egg=vplanet -v
 
       - name: Install vspace
         id: tools
